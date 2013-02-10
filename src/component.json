@@ -1,0 +1,30 @@
+{
+  "name": "regexper",
+  "styles": [
+    "style/normalize.css",
+    "style/main.css"
+  ],
+  "scripts": [
+    "javascript/regexper/any-character.js",
+    "javascript/regexper/base.js",
+    "javascript/regexper/charset.js",
+    "javascript/regexper/escaped.js",
+    "javascript/regexper/literal.js",
+    "javascript/regexper/match.js",
+    "javascript/regexper/range.js",
+    "javascript/regexper/regexp.js",
+    "javascript/regexper/repetition.js",
+    "javascript/regexper/subexp.js",
+    "javascript/regexper/text-box.js",
+    "javascript/raphael.js",
+    "javascript/renderer.js",
+    "javascript/grammerClasses.js",
+    "javascript/regexpGrammer.js",
+    "javascript/index.js"
+  ],
+  "main": "javascript/index.js",
+  "dependencies": {
+    "matthewmueller/debounce": "*",
+    "ForbesLindesay/base64": "*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "utf8-encode",
+  "repo": "ForbesLindesay/utf8-encode",
+  "description": "Encode JavaScript strings in UTF8",
+  "version": "1.0.0",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "scripts": [
+    "index.js"
+  ],
+  "twitter": "@ForbesLindesay"
+}

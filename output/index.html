@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Regexplained</title>
+
+    <meta name="description" content="Regular expression visualizer using railroad diagrams" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers" />
+    <link rel="stylesheet" href="build/build.css" />
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script>window.html5 || document.write('<script src="/assets/javscripts/vendor/html5shiv.js"><\/script>')</script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Regexplained</h1>
+        <!-- n. One who regexpes -->
+        <span>You thought you only had two problems...</span>
+    </header>
+
+    <section id="content">
+        <div class="container">
+            <span>
+                <input id="regexp_input" type="text" autofocus="autofocus" placeholder="Enter JavaScript-style regular expression to display" />
+                <button id="generate_btn" style="display: none">Generate</button>
+            </span>
+        </div>
+        <div id="error"></div>
+        <div class="results">
+            <div id="loading">
+                <img src="loader.gif" alt="Loading" />
+            </div>
+
+
+            <div id="paper-container"></div>
+        </div>
+        <div class="permalink">
+            <button id="permalinkBTN">Generate Permalink</button>
+            <iframe id="permalink" src=""
+                style="display: inline; padding: 0px; margin: 0px;"
+                width="300em"
+                height="23em"
+                seamless="seamless"
+                scrolling="no"
+                frameborder="0"
+            ></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <ul>
+            <li>Created by <a href="mailto:jeff.avallone@gmail.com">Jeff Avallone</a></li>
+            <li>Modified for real time updates by <a href="https://github.com/Iftahh">Iftah Haimovitch</a></li>
+            <li>Modified for permalinks and maintained by <a href="http://www.forbeslindesay.co.uk/about">Forbes Lindesay</a></li>
+            <li class="last"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">
+                <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" />
+            </a></li>
+        </ul>
+    </footer>
+
+    <a href="https://github.com/ForbesLindesay/regexplained.co.uk">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+    <script src="build/build.js"></script>
+    <script src="main.js"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38379867-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</body>
+</html>
