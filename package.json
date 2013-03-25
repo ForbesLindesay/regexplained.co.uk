@@ -4,12 +4,11 @@
   "dependencies": {
     "component-builder": "~0.6.2",
     "css": "~1.0.7",
-    "express": "~3.1.0",
-    "transform": "~0.0.8",
-    "uglify-js": "~2.2.4"
+    "uglify-js": "~2.2.4",
+    "stop": "~1.0.0"
   },
   "scripts": {
-    "serve": "node compile --serve",
-    "compile": "node compile"
+    "serve": "node server",
+    "compile": "node server --compile"
   }
 }

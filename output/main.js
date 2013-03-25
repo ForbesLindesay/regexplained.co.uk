@@ -1,1 +1,106 @@
-(function(){function e(){try{return JSON.parse(o.decode(location.hash.replace(/^#/,"")))}catch(e){return null}}function n(){var n=e();n&&n.pattern&&(u.value=n.pattern,t())}function t(e){l.innerHTML="",c.innerHTML="",document.body.className="is-loading has-results",clearTimeout(y),a(l,u.value,function(n){function t(){c.innerHTML=n.stack.replace(/\n/g,"<br>"),document.body.className="error"}n?e?y=setTimeout(t,1e3):t():(updateFragment(),document.body.className="has-results")})}var a=require("regexper"),r=require("matthewmueller-debounce"),o=require("ForbesLindesay-base64"),u=document.getElementById("regexp_input"),c=document.getElementById("error"),l=document.getElementById("paper-container"),i=document.getElementById("generate_btn"),s=document.getElementById("permalinkBTN"),d=document.getElementById("permalink");updateFragment=r(function(){location.hash=o.encode(JSON.stringify({pattern:u.value}))},1e3),n(),window.onhashchange=n,s.onclick=function(){location.hash=o.encode(JSON.stringify({pattern:u.value})),d.src="http://tinyurl.com/api-create.php?url="+encodeURIComponent(location.href)};var m=null;i.onclick=function(){l.innerHTML="",c.innerHTML="",document.body.className="is-loading has-results",a(l,u.value,function(e){e&&(c.innerHTML=e.stack.replace(/\n/g,"<br>")),document.body.className="has-results"})};var y,p=r(function(){t(!0)},200);u.onkeyup=function(e){(u.value!==m||13===e.keyCode)&&(m=u.value,d.src="",s.setAttribute("style",""),0===u.value.length?(l.innerHTML="",c.innerHTML="",document.body.className="",s.setAttribute("style","display: none"),i.setAttribute("style","display: none")):40>u.value.length?(i.setAttribute("style","display: none"),p()):(i.setAttribute("style",""),l.innerHTML="",c.innerHTML="",document.body.className="",13===e.keyCode&&t()))}})();
+(function () {
+  var regexper = require('regexper');
+  var debounce = require('matthewmueller-debounce');
+  var base64 = require('ForbesLindesay-base64');
+
+  var input = document.getElementById('regexp_input'),
+    error = document.getElementById('error'),
+    paper_container = document.getElementById('paper-container'),
+    generateBTN = document.getElementById('generate_btn');
+
+  var permalinkBTN = document.getElementById('permalinkBTN');
+  var permalink = document.getElementById('permalink');
+
+
+  updateFragment = debounce(function () {
+    location.hash = base64.encode(JSON.stringify({pattern: input.value}));
+  }, 1000);
+  function readFragment() {
+    try {
+      return JSON.parse(base64.decode(location.hash.replace(/^#/, '')));
+    } catch (ex) {
+      return null;
+    }
+  }
+  function onFragmentUpdated() {
+    var match = readFragment();
+    if (match && match.pattern) {
+      input.value = match.pattern;
+      render();
+    }
+  }
+  onFragmentUpdated();
+  window.onhashchange = onFragmentUpdated;
+
+  permalinkBTN.onclick = function () {
+    location.hash = base64.encode(JSON.stringify({pattern: input.value}));
+    permalink.src = 'http://tinyurl.com/api-create.php?url=' + encodeURIComponent(location.href);
+  };
+
+  var prev_input = null;
+
+  generateBTN.onclick = function() {
+    paper_container.innerHTML = '';
+    error.innerHTML = '';
+
+    document.body.className = 'is-loading has-results';
+    regexper(paper_container, input.value , function(e) {
+      if (e) error.innerHTML = e.stack.replace(/\n/g,"<br>");
+      document.body.className = 'has-results';
+    });
+  };
+
+  var errTimeout;
+  function render(keyboard) {
+    paper_container.innerHTML = '';
+    error.innerHTML = '';
+    document.body.className = 'is-loading has-results';
+    clearTimeout(errTimeout);
+
+
+
+    regexper(paper_container, input.value, function(e) {
+      if (e) {
+        if (keyboard) errTimeout = setTimeout(display, 1000);
+        else display();
+        function display() {
+          error.innerHTML = e.stack.replace(/\n/g,"<br>");
+          document.body.className = 'error';
+        }
+      } else {
+        updateFragment();
+        document.body.className = 'has-results';
+      }
+    });
+  }
+  var renderKeyboard = debounce(function () {
+    render(true);
+  }, 200);
+  input.onkeyup = function(e) {
+    if (input.value === prev_input && e.keyCode !== 13) {
+      return; // key hasn't changed text
+    }
+    prev_input = input.value;
+    permalink.src = '';
+    permalinkBTN.setAttribute('style', '');
+
+    if (input.value.length === 0) {
+      paper_container.innerHTML = '';
+      error.innerHTML = '';
+      document.body.className = '';
+      permalinkBTN.setAttribute('style', 'display: none');
+      generateBTN.setAttribute('style', 'display: none');
+    } else if (input.value.length < 40) {
+      generateBTN.setAttribute('style', 'display: none');
+      renderKeyboard();
+    } else {
+      generateBTN.setAttribute('style', '');
+      paper_container.innerHTML = '';
+      error.innerHTML = '';
+      document.body.className = '';
+      if (e.keyCode === 13) { //enter
+        render();
+      }
+    }
+  };
+}());
