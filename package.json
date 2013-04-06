@@ -2,10 +2,12 @@
   "name": "regexplained.co.uk",
   "version": "0.0.0",
   "dependencies": {
-    "component-builder": "~0.6.2",
     "css": "~1.0.7",
-    "uglify-js": "~2.2.4",
-    "stop": "~1.0.0"
+    "stop": "~1.0.0",
+    "browserify-middleware": "~1.5.0",
+    "rfile": "~1.0.0",
+    "regexplained": "~1.0.0",
+    "base64": "ForbesLindesay/base64"
   },
   "scripts": {
     "serve": "node server",
