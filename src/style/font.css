@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Bangers';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bangers'), local('Bangers-Regular'), url({{STATIC}}/bangers.woff) format('woff');
+}

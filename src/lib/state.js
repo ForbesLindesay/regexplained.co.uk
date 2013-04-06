@@ -1,7 +1,6 @@
 //dependencies
 var url = require('url');
-var base64 = require('base64');
-
+var base64 = require('./b64');
 var $ = require('./by-id');
 
 //elements
@@ -22,7 +21,7 @@ u = {
 //legacy "hash" based API
 try {
   if (location.hash && /[^\#]+/.test(location.hash)) {
-    u.query = JSON.parse(base64.decode(hash.replace(/^\#/, '')));
+    u.query = JSON.parse(base64.decode(location.hash.replace(/^\#/, '')));
   }
 } catch (ex) {
   if (typeof console !== 'undefined' &&  console && typeof console.error === 'function') {

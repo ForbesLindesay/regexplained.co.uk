@@ -1,14 +1,14 @@
 var regexplained = require('regexplained');
-var base64 = require('base64');
+
 var debounce = require('./lib/debounce');
 var $ = require('./lib/by-id');
+var state = require('./lib/state');
 
 var input = $('regexp_input');
 var error = $('error');
 var paperContainer = $('paper-container');
 var generateBTN = $('generate_btn');
 
-var state = require('./lib/state');
 if (state.get('pattern')) {
   input.value = state.get('pattern');
   render();
