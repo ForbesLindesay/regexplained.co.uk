@@ -45,8 +45,8 @@ exports.set = function (key, value) {
 }
 
 //if possible hide the query once we're loaded
-if (window.history && window.history.pushState && typeof window.history.pushState === 'function') {
-  window.history.pushState(null, null, url.format({
+if (window.history && window.history.replaceState && typeof window.history.replaceState === 'function') {
+  window.history.replaceState(null, null, url.format({
     protocol: u.protocol,
     host: u.host,
     pathname: u.pathname
