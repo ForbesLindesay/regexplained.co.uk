@@ -1,17 +1,25 @@
 {
   "name": "regexplained.co.uk",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "versionify": "0.0.1",
+  "private": true,
   "dependencies": {
-    "css": "~1.0.7",
-    "stop": "~1.0.0",
-    "browserify-middleware": "~1.5.0",
+    "css": "~1.4.0",
+    "browserify-middleware": "~1.16.0",
     "rfile": "~1.0.0",
     "regexplained": "~1.0.0",
     "base64": "ForbesLindesay/base64",
-    "rimraf": "~2.1.4"
+    "express": "~3.3.4"
+  },
+  "devDependencies": {
+    "rimraf": "~2.2.2",
+    "versionify": "~1.0.1",
+    "mandate": "~1.0.1",
+    "stop": "~2.1.1"
   },
   "scripts": {
-    "serve": "node server",
-    "compile": "node server --compile"
+    "prerelease": "versionify && rimraf out",
+    "release": "stop && mandate",
+    "postrelease": "rimraf out"
   }
 }
