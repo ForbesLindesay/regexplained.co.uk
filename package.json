@@ -4,18 +4,18 @@
   "versionify": "0.0.1",
   "private": true,
   "dependencies": {
-    "css": "~1.4.0",
-    "browserify-middleware": "~1.16.0",
+    "css": "~2.2.1",
+    "browserify-middleware": "~7.1.0",
     "rfile": "~1.0.0",
     "regexplained": "~1.0.0",
     "base64": "ForbesLindesay/base64",
-    "express": "~3.3.4"
+    "express": "~4.14.1"
   },
   "devDependencies": {
-    "rimraf": "~2.2.2",
+    "rimraf": "~2.6.1",
     "versionify": "~1.0.1",
-    "mandate": "~1.0.1",
-    "stop": "~2.1.1"
+    "mandate": "~1.1.1",
+    "stop": "~3.1.0"
   },
   "scripts": {
     "prerelease": "versionify && rimraf out",
